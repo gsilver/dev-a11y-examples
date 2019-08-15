@@ -25,6 +25,7 @@
     margin: 0.5em;
     padding-left: 20px;
     border: thin transparent solid;
+    cursor:pointer;
   }
 
   /* This creates the visuals for the radio buttons */
@@ -51,6 +52,13 @@
     border: 4px solid #000;
     content: '';
   }
+  .link {
+    color:#007bff;
+  }
+  .link:focus, .link:hover {
+      cursor: pointer;
+      text-decoration: underline;
+  }
 
   </style>
   <!-- Bootstrap CSS -->
@@ -61,6 +69,10 @@
   <div class="container">
     <br><br>
     <h2>Buttons</h2>
+    <p>Below some common controls - on the left the native control, on the right the closest synthetic equivalent.</p>
+    <p>Think of the instrumentation you will need to add to the synthetic element so that it will be perceived as the native correlate, and so that it will be able to be operated as a native control.</p>
+    <p>Then take a look at the source (or inspect things) to see. Maybe we are better off with native controls? You be the judge.</p>
+    <h2>Buttons and links</h2>
     <div class="row">
       <div class="col-sm">
         <button type="button" name="button" class="btn btn-primary" id="realbutton">A real button</button>
@@ -69,6 +81,17 @@
         <div class="btn btn-primary" role="button" tabindex="0" id="unrealbutton">An unreal button</div>
       </div>
     </div>
+    <br>
+    <div class="row">
+      <div class="col-sm">
+        <a href="http://www.w3c.org" target="_blank">A real link</a>
+      </div>
+      <div class="col-sm">
+        <span href="http://www.w3c.org" onkeydown="navigateLink(event)" onclick="navigateLink(event)" tabindex="0" id="link1" role="link" class="link">An unreal link</span>
+      </div>
+    </div>
+
+
     <br>
     <h2>Selects</h2>
     <div class="row">
@@ -423,6 +446,18 @@
        event.currentTarget.className = event.currentTarget.className.replace(' focus','');
     }
 
+  </script>
+
+  <script type="text/javascript">
+  sap = {ui:{keycodes:{SPACE:32, ENTER:13 }}};
+  //handles clicks and keydowns on the link
+  function navigateLink(evt) {
+      if (evt.type=="click" ||
+          evt.keyCode == sap.ui.keycodes.ENTER) {
+          var ref = evt.target != null ? evt.target : evt.srcElement;
+          if (ref) window.open(ref.getAttribute("href"),"_blank");
+      }
+  }
   </script>
 
 </body>
