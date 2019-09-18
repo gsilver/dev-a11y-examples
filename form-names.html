@@ -17,13 +17,10 @@
     <h1>Form element accessible names</h1>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="types-tab" data-toggle="tab" href="#types" role="tab" aria-controls="types" aria-selected="true">Types of names</a>
+        <a class="nav-link active" id="types-tab" data-toggle="tab" href="#types" role="tab" aria-controls="types" aria-selected="true">3 good names, one bad</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="edges-tab" data-toggle="tab" href="#edges" role="tab" aria-controls="edges" aria-selected="false">Edges</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="fixed2-tab" data-toggle="tab" href="#fixed2" role="tab" aria-controls="fixed2" aria-selected="false">Fixed v.2</a>
+        <a class="nav-link" id="edges-tab" data-toggle="tab" href="#edges" role="tab" aria-controls="edges" aria-selected="false">Dubious names</a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -33,7 +30,7 @@
         <h2>Types of names</h2>
         <p>A simple test: click on label, does it pass the focus to the element? If so it <b>probably</b> has a name.</p>
         <p>But there are other ways of providing a name that do not have the focus passing effect.</p>
-        <p>Use developer tools in Chrome. Inspect the input, switch to <b>Accessibility</b> pane. </p>
+        <p>Use developer tools in Chrome. Inspect the input, switch to <b>Accessibility</b> pane. Note - there is <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1005290&q=&colspec=ID%20Pri%20M%20Stars%20ReleaseBlock%20Component%20Status%20Owner%20Summary%20OS%20Modified" target="_blank"> bug in Chrome 76 and 77 </a> where explicit labels do not show up as a name.</p>
         <form>
           <h3><small> 1. Names?</small></h3>
           <div class="form-group">
@@ -44,16 +41,7 @@
             <label for="last_name">Last name</label>
             <input type="text" class="form-control" id="last_name">
           </div>
-          <h3> <small> 2. How about these?</small></h3>
-          <div class="form-group">
-            <label>First name</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="form-group">
-            <label>Last name</label>
-            <input type="text" class="form-control">
-          </div>
-          <h3><small>3. And these?</small></h3>
+          <h3><small>2. And these?</small></h3>
           <div class="form-group">
             <label>First name</label>
             <input type="text" class="form-control" aria-label="First name">
@@ -62,7 +50,7 @@
             <label>Last name</label>
             <input type="text" class="form-control"aria-label="Last name">
           </div>
-          <h2><small>4. Finally, how about?</small></h2>
+          <h2><small>3. Finally, how about?</small></h2>
           <div class="form-group">
             <label id="fnname2">First name</label>
             <input type="text" class="form-control" aria-labelledby="fnname2">
@@ -71,12 +59,42 @@
             <label id="lnname2">Last name</label>
             <input type="text" class="form-control" aria-labelledby="lnname2">
           </div>
+          <h3> <small>4. Definitely no name!</small></h3>
+          <div class="form-group">
+            <label>First name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Last name</label>
+            <input type="text" class="form-control">
+          </div>
+
 
         </form>
       </div>
-      <div class="tab-pane fade show" id="edges" role="tabpanel" aria-labelledby="edges-tab">
-        dd
-      </div>
+        <div class="tab-pane fade show" id="edges" role="tabpanel" aria-labelledby="edges-tab">
+          <br>
+          <h2>Other naming</h2>
+          <p>All of these seem like good ideas, but are not.</p>
+          <h3>Placeholder</h3>
+          <p>Some screen readers will use the placeholder to compute the name. Others may not. And everyone will be inconvinienced when the placeholder is complex.</p>
+          <div class="form-group">
+            <input type="text" name=""  class="form-control"  value="" placeholder="Start date (mm/dd/yyyy)" >
+          </div>
+          <h3>Title</h3>
+          <p>Screen readers may (or may not) read it when input receives focus.</p>
+          <div class="form-group">
+            <input type="text" name=""  class="form-control"  value="" title="Start date (mm/dd/yyyy)" >
+          </div>
+          <h3>Implicit labeling</h3>
+          <p>Click on label. It works! But your CSS framework might dissaprove.</p>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" name="" value=""> Some string
+            </label>
+          </div>
+
+        </div>
     </div>
   </div>
 
