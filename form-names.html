@@ -77,7 +77,7 @@
           <h2>Other naming</h2>
           <p>All of these seem like good ideas, but are not.</p>
           <h3>Placeholder</h3>
-          <p>Some screen readers will use the placeholder to compute the name. Others may not. And everyone will be inconvinienced when the placeholder is complex and crucial to filling thing correctly.</p>
+          <p>Some screen readers will use the placeholder to compute the name. Others may not. And everyone will be inconvinienced when the placeholder is complex and crucial to filling thing correctly. It is nice to have the the text always present.</p>
           <div class="form-group">
             <input type="text" name=""  class="form-control"  value="" placeholder="Start date (mm/dd/yyyy)" >
           </div>
@@ -87,10 +87,17 @@
             <input type="text" name=""  class="form-control"  value="" title="Start date (mm/dd/yyyy)" >
           </div>
           <h3>Implicit labeling</h3>
-          <p>Click on label. It works! But your CSS framework might dissaprove.</p>
+          <p>This is when instead of <code>&lt;label for="id"&gt;Name&lt;/label&gt; &lt;input id="id"&gt;</code> we do <code>&lt;label&gt;&lt;input&gt;Name&lt;/label&gt;</code> - the label wraps the input</p>
+          <p>Click on label. It works!</p>
           <div class="form-group">
             <label>
               <input type="checkbox" name="" value=""> Some string
+            </label>
+          </div>
+          <p>... but your CSS framework might dissaprove!</p>
+          <div class="form-group">
+            <label>
+               Some string that Boostrap 4 is not going to pad or margin properly<input type="text" class="form-control" name="" value="">
             </label>
           </div>
 
