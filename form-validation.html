@@ -185,7 +185,11 @@
         $(this).attr('aria-invalid',true);
         $(this).parent('.form-group').addClass('failedVal');
         failLog.push({name: $(this).siblings('label').text(),id:$(this).attr('id')})
+      } else {
+        $(this).attr('aria-invalid',false);
+        $(this).parent('.form-group').removeClass('failedVal');
       }
+
     });
     for ( var i = 0, j = failLog.length; i < j; i++ ) {
       //$('#valid_alert ul').append('<li><button class="btn btn-link" onclick="passFocus(' +failLog[i].id + ')">'+ failLog[i].name + '</button> is required</li>')
