@@ -178,6 +178,7 @@
   <script type="text/javascript">
 
   $('#bsubmit').on( "click", function() {
+    $('#valid_alert li').remove();
     var failLog=[];
     $('#bform *').filter(':input').each(function(){
       if($(this).attr('aria-required') && $(this).val() ===''){
