@@ -2,13 +2,29 @@
 <html lang="en">
 
 <head>
-  <title></title>
+  <title>Front end validation </title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <style media="screen">
+    .validMessage {
+      display:none;
+      margin-bottom: .5rem;
+      color: #fff;
+      background: red;
+      padding: 0 5px;
+      border-radius: 3px;
+      }
+    .failedVal span.validMessage {
+      display: inline-block;
+    }
+    #valid_alert{
+      display:none
+    }
+  </style>
 </head>
 
 <body>
@@ -124,15 +140,26 @@
               </div>
             </fieldset>
           </form>
-          <script>
-          $("#commentForm").validate();
-          </script>
 
         </div>
         <div class="tab-pane fade show" id="best" role="tabpanel" aria-labelledby="best-tab">
           <br>
           <h2>Best</h2>
-          <p>aria-describedby, aria-invalid, aria-required, global message outside the form or referenced</p>
+          <div id="valid_alert" class="alert alert-danger"><ul></ul></div>
+          <form id="bform">
+            <div class="form-group">
+              <label for="bname">Name</label> <span class="validMessage" id ="bname-valid-mess">This field is required</span>
+              <input id="bname" class="form-control" name="name" type="text" aria-required="true" aria-describedby="bname-valid-mess">
+            </div>
+            <div class="form-group">
+              <label for="bphone">Phone number</label> <span class="validMessage" id ="bphone-valid-mess">This field is required</span>
+              <input id="bphone" class="form-control" name="bphone" type="text" aria-required="true" aria-describedby="bphone-valid-mess">
+            </div>
+            <input type="button" id="bsubmit"class="btn btn-primary" name="" value="Submit">
+
+          </form>
+        </form>
+        <p>aria-describedby, aria-invalid, aria-required, global message outside the form or referenced</p>
         </div>
       </div>
   </div>
@@ -143,6 +170,36 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
+  <script>
+  $("#commentForm").validate();
+  </script>
+
+
+  <script type="text/javascript">
+
+  $('#bsubmit').on( "click", function() {
+    var failLog=[];
+    $('#bform *').filter(':input').each(function(){
+      if($(this).attr('aria-required') && $(this).val() ===''){
+        $(this).attr('aria-invalid',true);
+        $(this).parent('.form-group').addClass('failedVal');
+        failLog.push({name: $(this).siblings('label').text(),id:$(this).attr('id')})
+      }
+    });
+    for ( var i = 0, j = failLog.length; i < j; i++ ) {
+      //$('#valid_alert ul').append('<li><button class="btn btn-link" onclick="passFocus(' +failLog[i].id + ')">'+ failLog[i].name + '</button> is required</li>')
+      $('#valid_alert ul').append('<li><a href="#" onclick="passFocus(' +failLog[i].id + ')">'+ failLog[i].name + '</a> is required</li>')
+    }
+    if (failLog.length) {
+      $('#valid_alert').css('display','block').attr('tabindex',-1).focus();
+    }
+  });
+  var passFocus = function(id) {
+    var thisEl=id.id;
+    $('#' + thisEl).focus();
+  }
+  </script>
+
 </body>
 
 </html>
