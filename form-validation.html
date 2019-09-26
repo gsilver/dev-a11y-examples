@@ -193,6 +193,8 @@
     }
     if (failLog.length) {
       $('#valid_alert').css('display','block').attr('tabindex',-1).focus();
+    } else {
+      $('#valid_alert').css('display','none');
     }
   });
   var passFocus = function(id) {
