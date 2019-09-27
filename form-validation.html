@@ -10,6 +10,9 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <style media="screen">
+    label.error {
+      color:#c00
+    }
     .validMessage {
       display:none;
       margin-bottom: .5rem;
@@ -145,7 +148,8 @@
         <div class="tab-pane fade show" id="best" role="tabpanel" aria-labelledby="best-tab">
           <br>
           <h2>Best</h2>
-          <div id="valid_alert" class="alert alert-danger"><ul></ul></div>
+          <p>Using <code>aria-describedby</code>, <code>aria-invalid</code>, <code>aria-required</code>, and a global message (<code>role="alert"</code>) outside the form that gets focus on failed validation.</p>
+          <div id="valid_alert" class="alert alert-danger" role="alert"><ul></ul></div>
           <form id="bform">
             <div class="form-group">
               <label for="bname">Name</label> <span class="validMessage" id ="bname-valid-mess">This field is required</span>
@@ -159,7 +163,6 @@
 
           </form>
         </form>
-        <p>aria-describedby, aria-invalid, aria-required, global message outside the form or referenced</p>
         </div>
       </div>
   </div>
@@ -192,7 +195,6 @@
 
     });
     for ( var i = 0, j = failLog.length; i < j; i++ ) {
-      //$('#valid_alert ul').append('<li><button class="btn btn-link" onclick="passFocus(' +failLog[i].id + ')">'+ failLog[i].name + '</button> is required</li>')
       $('#valid_alert ul').append('<li><a href="#" onclick="passFocus(' +failLog[i].id + ')">'+ failLog[i].name + '</a> is required</li>')
     }
     if (failLog.length) {
