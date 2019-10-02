@@ -139,7 +139,7 @@
                 <textarea id="ccomment" class="form-control"  name="comment" required></textarea>
               </div>
               <div class="form-group">
-                <input class="submit" type="submit" value="Submit" class="btn btn-primary">
+                <input type="submit" value="Submit" class="btn btn-primary submit">
               </div>
             </fieldset>
           </form>
@@ -159,10 +159,10 @@
               <label for="bphone">Phone number</label> <span class="validMessage" id ="bphone-valid-mess">This field is required</span>
               <input id="bphone" class="form-control" name="bphone" type="text" aria-required="true" aria-describedby="bphone-valid-mess">
             </div>
-            <input type="button" id="bsubmit"class="btn btn-primary" name="" value="Submit">
+            <input type="button" id="bsubmit" class="btn btn-primary" name="bsubmit" value="Submit">
 
           </form>
-        </form>
+
         </div>
       </div>
   </div>
@@ -178,7 +178,7 @@
   </script>
 
 
-  <script type="text/javascript">
+  <script>
 
   $('#bsubmit').on( "click", function() {
     $('#valid_alert li').remove();
